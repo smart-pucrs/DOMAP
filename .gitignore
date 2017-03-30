@@ -1,0 +1,14 @@
+/bin
+/bin/
+backup/
+cache/
+graphs/
+/perceptlog/
+perceptlog/
+log/
+*.raw
+*.log
+xmls/
+*~
+*.bk
+e_r_r_o_r.txt
