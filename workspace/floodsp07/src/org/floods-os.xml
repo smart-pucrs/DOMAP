@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet href="http://moise.sourceforge.net/xml/os.xsl" type="text/xsl" ?>
+<organisational-specification 
+    id="floods_domain"
+    os-version="0.8"
+  
+    xmlns='http://moise.sourceforge.net/os'
+    xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'
+    xsi:schemaLocation='http://moise.sourceforge.net/os
+                        http://moise.sourceforge.net/xml/os.xsd' >
+    
+<structural-specification>
+	<role-definitions>
+		<role id="cdm" />
+		<role id="vehicle" />
+		<role id="usv" >	<extends role="vehicle"/>  </role>
+		<role id="ugv" >	<extends role="vehicle"/>  </role>  
+	</role-definitions>
+	<group-specification id="floods">
+		<roles>
+			<role id="cdm"		min="1" max="1"/>
+			<role id="usv"		min="2" max="2"/>
+			<role id="ugv"		min="1" max="1"/>
+		</roles>
+		<links>
+			<link from="cdm" to="vehicle" type="authority" scope="intra-group" extends-subgroups="false" bi-dir="false"/>
+			<link from="vehicle" to="vehicle" type="acquaintance" scope="intra-group" extends-subgroups="false" bi-dir="false"/>        
+		</links>
+	</group-specification>
+
+</structural-specification>
+<!--  
+<functional-specification>
+ <scheme id="sch1">
+   <goal id="finish">
+       <plan operator="sequence">
+       		<goal id="navigate1">
+          		<plan operator="parallel">
+					<goal id="navigate_usv"/>          		
+             		<goal id="navigate_ugv"/>
+          		</plan>
+       		</goal>
+       <goal id="take_picture1">
+          <plan operator="parallel">
+             <goal id="take_picture_usv"/>
+             <goal id="take_picutre_ugv"/>
+          </plan>
+       </goal>
+     </plan> 
+   </goal>
+
+   <mission id="end" min="3" max="3">
+     <goal id="finish"/>
+   </mission>
+   <mission id="navigating_usv" min="1" max="1">
+     <goal id="navigate_usv" />
+   </mission>
+   <mission id="navigating_ugv" min="1" max="1">
+     <goal id="navigate_ugv" />
+   </mission>
+   <mission id="taking_picture_usv" min="1" max="1">
+     <goal id="take_picture_usv" />
+   </mission>
+   <mission id="taking_picture_ugv" min="1" max="1">
+     <goal id="take_picture_ugv" />
+   </mission>   
+ </scheme>
+</functional-specification>
+
+<normative-specification>
+<norm id="n1"     type="obligation"    role="vehicle"            mission="end" />
+<norm id="n2"     type="obligation"    role="usv1" 		    	 mission="navigating_usv" />
+<norm id="n3"     type="obligation"    role="ugv1"             	 mission="navigating_ugv" />
+<norm id="n4"     type="obligation"    role="usv1"            	 mission="taking_picture_usv" />
+<norm id="n5"     type="obligation"    role="ugv1"               mission="take_picture_ugv" />
+<norm id="n11"    type="obligation"    role="cdm"       		 mission="end" />
+</normative-specification>
+-->
+</organisational-specification>

@@ -1,0 +1,10 @@
+#! /home/username/acl/alisp -#!
+(require :asdf)
+(push "/home/username/shop2/" asdf:*central-registry*)
+(asdf:oos 'asdf:load-op :shop2)
+(load "/home/username/floods/p01/uav1")
+#(define-rover-domain)
+#(load "/home/username/Doutorado/domains/domains shop/rovers/p01/p01")
+#(find-plans 'p01 :verbose :plans)
+# (find-plans '$PROBLEM_NAME :which :shallowest :time-limit 10)
+#(find-plans 'p01 :which :shallowest :verbose :plans)

@@ -1,0 +1,183 @@
+(in-package :shop2-user)
+
+(defdomain floods-uav (
+        ;; basic operators
+
+        (:operator (!navigate_uav ?v ?y ?z)
+                   (	(uav ?v)  (area ?y)  (area ?z) (at ?v ?y)	)
+                   (	(at ?v ?y)	) 
+		   (	(at ?v ?z)	)
+        )
+
+	(:operator (!take_picture ?v ?a ?d)
+		   ( (area ?a) (disaster ?d) (visible_from ?d ?a) (at ?v ?a)	)
+		   ()
+		   (	(have_picture ?v ?d)	)
+	)
+
+	(:operator (!communicate_data ?v ?c ?d ?a1 ?a2)
+		   ( (disaster ?d) (cdm ?c) (at ?v ?a1) (cdm_at ?c ?a2) (area ?a1) (area ?a2) (have_picture ?v ?d) (in_range ?a1 ?a2)	)
+		   (	(have_picture ?v ?d)	)
+		   (	(communicated_data ?d)	)
+	)
+
+(:operator (!!visit ?area)
+  ()
+  ()
+  ((visited ?area))
+)
+
+(:operator (!!unvisit ?area)
+  ()
+  ((visited ?area))
+  ()
+)
+
+;;;------------------------------------------------------------
+
+;; actual AI planning methods
+
+(:method (navigate ?robot ?to)
+  (	(uav ?robot) (at ?robot ?from) 	)
+  (	(navigate_uav ?robot ?from ?to)	)
+)
+
+(:method (navigate_uav ?uav ?from ?to)
+(	(at ?uav ?to)	)
+()
+
+()
+(	(!navigate_uav ?uav ?from ?to)	)
+)
+
+(:method (get_picture ?disaster)
+(	(robot ?robot) (disaster ?disaster) (visible_from ?disaster ?area)	)
+(	(navigate ?robot ?area) (!take_picture ?robot ?area ?disaster) (send_data ?robot ?disaster)	)
+)
+
+(:method (send_data ?robot ?disaster)
+(	(robot ?robot) (disaster ?disaster) (have_picture ?v ?d) (at ?v ?a1) (cdm_at ?c ?a2) (area ?a1) (area ?a2) (in_range ?a1 ?a2)	)
+(	(!communicate_data ?robot ?c ?disaster ?a1 ?a2)	)
+
+(	(robot ?robot) (disaster ?disaster) (have_picture ?v ?d) (cdm_at ?c ?a2) (area ?a2) (in_range ?a1 ?a2)	)
+(	(navigate ?robot ?a1) (!communicate_data ?robot ?c ?disaster ?a1 ?a2)	)
+)
+
+))
+
+;;;--------------------------------------------------------------
+(defproblem uav2 floods-uav
+   (
+    ;;;
+    ;;;  facts
+    ;;;
+    (robot uav2)
+    (uav uav2)
+    (area area1)
+    (area area2)
+    (area area3)
+    (area area4)
+    (area area5)
+    (area area6)
+    (area area7)
+    (area area8)
+    (area area9)
+    (area area10)
+    (area area11)
+    (area area12)
+    (area area13)
+    (area area14)
+    (area area15)
+    (disaster disaster1)
+    (disaster disaster2)
+    (disaster disaster3)
+    (disaster disaster4)
+    (disaster disaster5)
+    (cdm cdm1)
+    (cdm cdm2)
+    (store ugv1Store)
+    (store ugv2Store)
+    (store ugv3Store)
+    (store usv1Store)
+    (store usv2Store)
+    (store usv3Store)
+    (box box1)
+    (box box2)
+    
+    ;;;
+    ;;;  initial states
+    ;;;
+	(cdm_at cdm1 area1)
+	(cdm_at cdm2 area13)
+	(at uav2 area1)
+	(box_at_cdm box1 cdm1)
+	(box_at_cdm box2 cdm2)
+	(empty ugv1Store)
+	(empty ugv2Store)
+	(empty ugv3Store)
+	(empty usv1Store)
+	(empty usv2Store)
+	(empty usv3Store)
+
+	(water_path area1 area2)
+	(water_path area2 area1)
+	(water_path area2 area4)
+	(water_path area4 area2)
+	(water_path area2 area6)
+	(water_path area6 area2)
+	(water_path area4 area5)
+	(water_path area5 area4)
+	(water_path area4 area9)
+	(water_path area9 area4)
+	(water_path area9 area8)
+	(water_path area8 area9)
+	(water_path area8 area7)
+	(water_path area7 area8)
+	(water_path area6 area12)
+	(water_path area12 area6)
+	(water_path area12 area10)
+	(water_path area10 area12)
+	(water_path area9 area13)
+	(water_path area13 area9)
+	(water_path area2 area14)
+	(water_path area14 area2)
+
+	(ground_path area1 area3)
+	(ground_path area3 area1)
+	(ground_path area3 area4)
+	(ground_path area4 area3)
+	(ground_path area3 area5)
+	(ground_path area5 area3)
+	(ground_path area4 area6)
+	(ground_path area6 area4)
+	(ground_path area4 area10)
+	(ground_path area10 area4)
+	(ground_path area10 area7)
+	(ground_path area7 area10)
+	(ground_path area7 area8)
+	(ground_path area8 area7)
+	(ground_path area5 area11)
+	(ground_path area11 area5)
+	(ground_path area11 area9)
+	(ground_path area9 area11)
+	(ground_path area10 area13)
+	(ground_path area13 area10)
+	(ground_path area3 area15)
+	(ground_path area15 area3)
+
+	(visible_from disaster1 area8)
+	(visible_from disaster2 area12)
+	(visible_from disaster3 area10)
+	(visible_from disaster4 area7)
+	(visible_from disaster5 area3)
+
+	(in_range area2 area1)
+	(in_range area3 area1)
+	(in_range area1 area1)
+	(in_range area9 area13)
+	(in_range area10 area13)
+	(in_range area13 area13)
+)
+
+(:unordered
+

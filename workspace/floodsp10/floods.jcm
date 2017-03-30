@@ -1,0 +1,94 @@
+mas floods {
+	
+	
+	agent uav : uav.asl {
+		join: cnp
+		instances: 12
+		focus: cnp.task_board
+	}
+	
+	agent ugv : ugv.asl {
+		join: cnp
+		instances: 12
+		focus: cnp.task_board
+	}	
+	
+	agent usv : usv.asl {
+		join: cnp
+		instances: 12
+		focus: cnp.task_board
+	}
+	
+	agent org_agent {
+		join: cnp
+		focus: cnp.task_board
+	}
+	
+		workspace cnp {
+		artifact task_board: cnp.TaskBoard()
+	}
+	 
+
+//	agent ugv : robot.asl {
+//		instances: 3
+//	}
+//	
+//	agent usv : robot.asl {
+//		instances: 3
+//	}	
+	
+/*
+	agent cdm : cdm.asl {
+		goals: create_taskboard, focus_cnp, create_goal 
+		join: w1
+		focus: w1.cdm
+		roles: cdm in o1.g1
+	}
+	agent usv1 : usvcase1.asl {
+		goals: focus_cnp
+		join: w1, robots
+		focus: w1.cdm, w1.a1, w1.a2, w1.a3, w1.a4, w1.flood1, w1.flood2, w1.flood3, w1.flood4, robots.usv1
+		roles: usv in o1.g1
+	}
+ 	agent usv2 : usv.asl {
+		goals: focus_cnp
+		join: w1, robots
+		focus: w1.cdm, w1.a1, w1.a2, w1.a3, w1.a4, w1.flood1, w1.flood2, w1.flood3, w1.flood4, robots.usv2
+		roles: usv in o1.g1
+	}	
+	agent ugv1 : ugvcase1.asl  {
+		goals: focus_cnp
+		join: w1, robots
+		focus: w1.cdm, w1.a1, w1.a2, w1.a3, w1.a4, w1.flood1, w1.flood2, w1.flood3, w1.flood4, robots.ugv1	
+		roles: ugv in o1.g1
+	}
+	workspace w1 {
+		artifact a1: floods.Area(["a2"],[""])
+		artifact a2: floods.Area(["a1,a4"],[""])
+		artifact a3: floods.Area([""],["a4"])
+		artifact a4: floods.Area(["a2"],["a3"])
+		artifact flood1: floods.Disaster(["a3"])
+		artifact flood2: floods.Disaster(["a1"])
+		artifact flood3: floods.Disaster(["a3"])
+		artifact flood4: floods.Disaster(["a1"])
+		artifact cdm: floods.Cdm("a4")
+	}
+	workspace robots {
+		artifact usv1: floods.VehicleUsv("a2","empty")
+//		artifact usv2: floods.VehicleUsv("a2","empty")
+		artifact ugv1: floods.VehicleUgv("a4","none")
+	}
+	organisation o1: floods-os.xml {
+		group g1: floods 
+	}
+	*/
+	// java class path
+    class-path:  lib
+   
+    // agent source path
+    asl-path: src/agt
+              src/agt/inc
+              
+	platform: cartago("infrastructure")
+	
+}
