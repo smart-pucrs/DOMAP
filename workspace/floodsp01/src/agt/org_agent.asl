@@ -284,10 +284,7 @@ select_bid1_ignore([bid(Bid,BidAgent,Goal)|Bids],bid(AuxBid,AuxBidAgent,AuxGoal)
 	}
 	?total_alloc(TimeG);
 	.print("Total elapsed time: ",TimeG+TimeP);
-	.print("Parsing solutions...");
-	.broadcast(achieve,parse_solution);
-	.print("Starting execution.");
-//	.stopMAS;
+	.stopMAS;
 	.
 +!count : count(C) & replan(R) & C + R == 8  & round(Round) & time(Start)
 <-

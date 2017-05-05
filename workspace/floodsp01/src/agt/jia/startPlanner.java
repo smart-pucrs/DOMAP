@@ -17,7 +17,7 @@ public class startPlanner extends DefaultInternalAction {
         // execute the internal action
 //        ts.getAg().getLogger().info("executing internal action 'jia.startPlanner'");
         String name = args[0].toString();
-        String cp = "/home/username/acl/floods/p01/startPlanner-"+name+".cl";
+        String cp = "/home/rovane/acl/floods/p01/startPlanner-"+name+".cl";
         boolean replan = false;
         //String domain =  ((StringTerm) args[0]).getString();
         //String problem =  ((StringTerm) args[1]).getString();        
@@ -38,7 +38,7 @@ public class startPlanner extends DefaultInternalAction {
             BufferedReader br2 = new BufferedReader(isr);
             String line2 = null;
             try{
-                PrintWriter writer = new PrintWriter("/home/username/floods/output/p01/"+name+".out", "UTF-8");
+                PrintWriter writer = new PrintWriter("/home/rovane/floods/output/p01/"+name+".out", "UTF-8");
                 writer.println("<OUTPUT>");
                 while ( (line2 = br2.readLine()) != null) {
                     writer.println(line2);

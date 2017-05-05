@@ -22,7 +22,7 @@ public class addParameters extends DefaultInternalAction {
         String name = args[0].toString();
         String params = "))\n\n(find-plans '"+name+" :which :shallowest :verbose :plans)";
         try {
-            Files.write(Paths.get("/home/username/floods/p01/"+name+".lisp"), params.getBytes(), StandardOpenOption.APPEND);
+            Files.write(Paths.get("/home/rovane/floods/p01/"+name+".lisp"), params.getBytes(), StandardOpenOption.APPEND);
         }catch (IOException e) {
             //exception handling left as an exercise for the reader
         }

@@ -27,7 +27,7 @@ public class addGoals extends DefaultInternalAction {
         goals = goals.replace(") ", ")\n(:task ");
         goals = goals.replace(")]", ")\n");
         try {
-            Files.write(Paths.get("/home/username/floods/p01/"+name+".lisp"), goals.getBytes(), StandardOpenOption.APPEND);
+            Files.write(Paths.get("/home/rovane/floods/p01/"+name+".lisp"), goals.getBytes(), StandardOpenOption.APPEND);
         }catch (IOException e) {
             //exception handling left as an exercise for the reader
         }

@@ -21,7 +21,7 @@ public class copyFile extends DefaultInternalAction {
     public Object execute(TransitionSystem ts, Unifier un, Term[] args) throws Exception {
         String name = args[0].toString();
         try {
-        	Files.copy(Paths.get("/home/username/floods/p01/backup/"+name+".lisp"), Paths.get("/home/username/floods/p01/"+name+".lisp"), REPLACE_EXISTING);
+        	Files.copy(Paths.get("/home/rovane/floods/p01/backup/"+name+".lisp"), Paths.get("/home/rovane/floods/p01/"+name+".lisp"), REPLACE_EXISTING);
         }catch (IOException e) {
             //exception handling left as an exercise for the reader
         }

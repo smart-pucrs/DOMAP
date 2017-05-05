@@ -2,7 +2,6 @@
 { include("$jacamoJar/templates/common-moise.asl") }
 { include("decomp_breadth.asl") }
 { include("bidder.asl") }
-{ include("parser.asl") }
 
 /* Initial beliefs and rules */
 role(ugv).
